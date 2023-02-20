@@ -12,13 +12,10 @@ var twoSum = function(nums, target) {
         // does target - item exist?
         if (myMap.has(target - item)){
             outputArray = [myMap.get(target - item), index]
-            return
         }else {
             myMap.set(item,index)
         }
     })
-    
-    console.log(myMap)
     
     return outputArray
     
