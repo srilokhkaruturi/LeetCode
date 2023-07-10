@@ -9,10 +9,8 @@ class Solution:
         if n == 1:
             return 1
         else:
-            result = self.fib(n-1) + self.fib(n-2)
+            mem_array[n] = self.fib(n-1) + self.fib(n-2)
         
-        mem_array[n] = result
-        
-        return result
+        return mem_array[n]
         
         
