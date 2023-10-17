@@ -5,51 +5,27 @@
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        if not list1:
-            return list2
-        if not list2:
-            return list1
+        # Initialize dummy and current pointer
+        dummy = ListNode(-1)
+        current = dummy
         
+        # While both lists are not empty
+        while list1 and list2:
+            # Compare the values of list1 and list2
+            if list1.val < list2.val:
+                current.next = list1
+                list1 = list1.next
+            else:
+                current.next = list2
+                list2 = list2.next
+            # Move to the next position in the merged list
+            current = current.next
         
-        head = ListNode()
+        # If one of the lists is not empty, attach it to the end
+        if list1:
+            current.next = list1
+        else:
+            current.next = list2
         
-        pointer = head
-        pointer_one = list1
-        pointer_two = list2
-        
-        while pointer_one and pointer_two:
-            print(pointer_one.val, pointer_two.val)
-            
-            if pointer_one.val == pointer_two.val:
-                pointer.next = ListNode(pointer_one.val)
-                pointer = pointer.next
-                
-                pointer.next = ListNode(pointer_two.val)
-                pointer = pointer.next
-                
-                pointer_one = pointer_one.next
-                pointer_two = pointer_two.next
-               
-            elif pointer_one.val < pointer_two.val:
-                pointer.next = ListNode(pointer_one.val)
-                pointer = pointer.next
-                
-                pointer_one = pointer_one.next
-
-              
-            elif pointer_one.val > pointer_two.val:                
-                pointer.next = ListNode(pointer_two.val)
-                pointer = pointer.next
-            
-                pointer_two = pointer_two.next
-                
-                
-        # check if one is null
-        if not pointer_one:
-            pointer.next = pointer_two
-        if not pointer_two:
-            pointer.next = pointer_one
-            
-                
-        return head.next
-                
+        # Return the merged list starting from the next of dummy node
+        return dummy.next
