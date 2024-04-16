@@ -1,10 +1,10 @@
 class Solution:
     def repeatedCharacter(self, s: str) -> str:
-        letters = {}
+        letters = set()
         
-        for i, character in enumerate(s):
+        for letter in s:
             
-            if character in letters:
-                return character
+            if letter in letters:
+                return letter
             
-            letters[character] = character
+            letters.add(letter)
