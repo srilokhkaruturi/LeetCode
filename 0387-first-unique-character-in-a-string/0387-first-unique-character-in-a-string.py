@@ -1,21 +1,36 @@
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-        char_dict = {}
+        # Occurence Dictionary
+        occurence_dict = OrderedDict()
         
-        # create an occurrences dict
-        # key = item
-        # value = count
+        # O(n) - populate occurence dictionary
         for i in range(0, len(s)):
-            if s[i] in char_dict:
-                char_dict[s[i]] += 1
+            if s[i] in occurence_dict:
+                occurence_dict[s[i]] += 1
             else:
-                char_dict[s[i]] = 1
-        
-        # find the first one that is 1
-        for value in char_dict:
-            if char_dict[value] == 1:
-                return s.find(value)
+                occurence_dict[s[i]] = 1
             
-        return -1
-                
+        # Determine first unique character in string
+        first_unique_char = ''
+        first_unique_index = -1
         
+
+        
+        for key, value in occurence_dict.items():
+            if value == 1:
+                first_unique_char = key
+                break
+                
+                
+        # Determine index of the first char
+        if first_unique_char == '':
+            return first_unique_index
+        else:
+            for i in range(len(s)):
+                if s[i] == first_unique_char:
+                    return i
+                
+            
+        
+        
+            
